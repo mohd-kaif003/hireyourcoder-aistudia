@@ -13,7 +13,7 @@ export const LeadGenerationSection: React.FC = () => {
     email: '',
     phone: '',
     service: 'Web Application Development',
-    budget: '$2,500 - $5,000 (₹1.75L - ₹3.5L)',
+    budget: 'Growth Stage / Production Platform',
     timeline: 'Within 1 Month',
     message: ''
   });
@@ -270,17 +270,17 @@ export const LeadGenerationSection: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-semibold text-slate-700 uppercase mb-1">Estimated Budget</label>
+                      <label className="block text-[11px] font-semibold text-slate-700 uppercase mb-1">Engagement Scope / Model</label>
                       <select
                         value={formData.budget}
                         onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                         className="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                       >
-                        <option value="$1,000 - $2,500 (₹75k - ₹1.8L)">$1,000 - $2,500 (₹75k - ₹1.8L)</option>
-                        <option value="$2,500 - $5,000 (₹1.75L - ₹3.5L)">$2,500 - $5,000 (₹1.75L - ₹3.5L)</option>
-                        <option value="$5,000 - $10,000 (₹3.5L - ₹7.5L)">$5,000 - $10,000 (₹3.5L - ₹7.5L)</option>
-                        <option value="$10,000+ (Enterprise Scope)">$10,000+ (Enterprise Scope)</option>
-                        <option value="Monthly Developer Retainer">Monthly Developer Retainer</option>
+                        <option value="Early-Stage MVP / Rapid Launch">Early-Stage MVP / Rapid Launch</option>
+                        <option value="Growth Stage / Production Platform">Growth Stage / Production Platform</option>
+                        <option value="Enterprise Architecture & Scalability">Enterprise Architecture & Scalability</option>
+                        <option value="Dedicated Developer Pod / Augmentation">Dedicated Developer Pod / Augmentation</option>
+                        <option value="Custom Scope (Discuss on Call)">Custom Scope (Discuss on Call)</option>
                       </select>
                     </div>
                   </div>

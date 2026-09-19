@@ -1,0 +1,44 @@
+<svg viewBox="0 0 320 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="hyc-cyan-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#00B4FE" />
+      <stop offset="100%" stopColor="#0077FF" />
+    </linearGradient>
+    <linearGradient id="hyc-accent-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stopColor="#0080FF" />
+      <stop offset="100%" stopColor="#00D0FE" />
+    </linearGradient>
+  </defs>
+
+  <!-- Stylized Monogram Icon -->
+  <g id="brand-icon">
+    <path d="M26 12 L44 12 L33 33 L15 33 Z" fill="url(#hyc-accent-grad)" />
+    <path d="M3 12 L19 12 L36 43 L36 72 L23 72 L23 48 L8 22 Z" fill="#0B132B" />
+    <path d="M34 40 L49 68 L36 68 L25 46 Z" fill="#0B132B" opacity="0.9" />
+  </g>
+
+  <!-- Wordmark Area -->
+  <g transform="translate(68, 0)">
+    <!-- HIRE Tag Pill -->
+    <g transform="translate(4, 3)">
+      <rect x="0" y="0" width="66" height="20" rx="10" fill="#E0F7FE" stroke="#BAE6FD" stroke-width="1" />
+      <text x="13" y="14" fill="#0284C7" font-size="9.5" font-weight="900" font-family="system-ui, sans-serif" letter-spacing="0.15em">HIRE</text>
+      <circle cx="53" cy="10" r="3.5" fill="#00A3FF" />
+    </g>
+
+    <!-- Main "YourCoder" Wordmark -->
+    <g transform="translate(0, 52)">
+      <text x="0" y="0" fill="#0B132B" font-size="38" font-weight="900" font-family="system-ui, sans-serif" letter-spacing="-0.035em">Your</text>
+      <text x="96" y="0" fill="url(#hyc-cyan-grad)" font-size="38" font-weight="900" font-family="system-ui, sans-serif" letter-spacing="-0.035em">Coder</text>
+    </g>
+
+    <!-- Subtitle: Build • Automate • Grow -->
+    <g transform="translate(3, 72)">
+      <text x="0" y="0" fill="#475569" font-size="11" font-weight="600" font-family="system-ui, sans-serif" letter-spacing="0.28em">Build</text>
+      <circle cx="58" cy="-3.5" r="2.5" fill="#00A3FF" />
+      <text x="72" y="0" fill="#475569" font-size="11" font-weight="600" font-family="system-ui, sans-serif" letter-spacing="0.28em">Automate</text>
+      <circle cx="168" cy="-3.5" r="2.5" fill="#00A3FF" />
+      <text x="182" y="0" fill="#475569" font-size="11" font-weight="600" font-family="system-ui, sans-serif" letter-spacing="0.28em">Grow</text>
+    </g>
+  </g>
+</svg>

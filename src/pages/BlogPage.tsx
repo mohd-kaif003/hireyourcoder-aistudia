@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { blogData } from '../data/blogData';
 import { ArrowRight, Clock, Calendar, Tag, BookOpen } from 'lucide-react';
+import { Breadcrumbs } from '../components/common/Breadcrumbs';
 
 interface BlogPageProps {
   onNavigate: (path: string) => void;
@@ -19,6 +20,9 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onNavigate }) => {
     <div className="pt-28 pb-20 bg-slate-50/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
+        {/* Breadcrumbs */}
+        <Breadcrumbs items={[{ label: 'Blog & Articles' }]} onNavigate={onNavigate} className="mb-6" />
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wider mb-3">

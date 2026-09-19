@@ -241,7 +241,7 @@ export const industriesData: IndustryItem[] = [
     ],
     technology: ['Node.js', 'PostgreSQL', 'Redis', 'Docker', 'Recharts / D3', 'AWS KMS'],
     exampleUseCases: [
-      { title: 'Cross-Border B2B Invoicing Platform', outcome: 'Facilitated $12M+ in cross-border settlements with automated FX calculations.' },
+      { title: 'Cross-Border B2B Invoicing Platform', outcome: 'Facilitated high-volume multi-currency settlements with automated FX calculations.' },
       { title: 'Wealth Advisory Client Portal', outcome: 'Cut client onboarding duration from 5 business days to 8 minutes.' }
     ],
     benefits: [
@@ -325,7 +325,7 @@ export const industriesData: IndustryItem[] = [
     ],
     technology: ['React', 'Laravel / PHP', 'MySQL', 'Node.js', 'PDF Generation Engine'],
     exampleUseCases: [
-      { title: 'Artisan Metal & Brassware Exporter (Moradabad)', outcome: 'Digitized 3,500+ handcrafted SKUs into a private buyer portal, generating $1.8M in export orders.' },
+      { title: 'Artisan Metal & Brassware Exporter (Moradabad)', outcome: 'Digitized 3,500+ handcrafted SKUs into a private buyer portal, driving substantial international export volume.' },
       { title: 'Industrial Component Manufacturer', outcome: 'Reduced formal quotation generation turnaround from 72 hours to 90 seconds.' }
     ],
     benefits: [
@@ -368,7 +368,7 @@ export const industriesData: IndustryItem[] = [
     technology: ['Next.js', 'React', 'Node.js', 'PostgreSQL', 'Tailwind CSS', 'Stripe', 'Docker'],
     exampleUseCases: [
       { title: 'AI Copywriting Startup MVP', outcome: 'Built and launched in 5 weeks, successfully onboarding 2,400 active beta users.' },
-      { title: 'B2B Procurement Marketplace', outcome: 'Helped founders close $1.2M seed round showcasing a fully operational product.' }
+      { title: 'B2B Procurement Marketplace', outcome: 'Helped founders successfully close an institutional seed round showcasing a fully operational product.' }
     ],
     benefits: [
       'Hit the market months ahead of your competitors before capital runs dry',

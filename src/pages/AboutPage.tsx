@@ -3,6 +3,7 @@ import {
   ShieldCheck, Award, Users, Globe, ArrowRight, CheckCircle2, 
   Sparkles, Code2, Lock, MessageSquare 
 } from 'lucide-react';
+import { Breadcrumbs } from '../components/common/Breadcrumbs';
 
 interface AboutPageProps {
   onOpenConsultation: () => void;
@@ -14,6 +15,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenConsultation, onNavi
     <div className="pt-28 pb-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
+        {/* Breadcrumbs */}
+        <Breadcrumbs items={[{ label: 'About Us' }]} onNavigate={onNavigate} className="mb-6" />
+
         {/* Hero */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-wider mb-4">

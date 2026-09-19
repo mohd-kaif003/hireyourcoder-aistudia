@@ -2,8 +2,9 @@ import React from 'react';
 import { CaseStudy } from '../types';
 import { 
   ArrowLeft, CheckCircle2, Sparkles, MessageSquare, ArrowRight, 
-  Layers, Code2, ShieldCheck, Terminal, Cpu 
+  Layers, Code2, ShieldCheck, Cpu 
 } from 'lucide-react';
+import { Breadcrumbs } from '../components/common/Breadcrumbs';
 
 interface CaseStudyDetailPageProps {
   caseStudy: CaseStudy;
@@ -20,11 +21,18 @@ export const CaseStudyDetailPage: React.FC<CaseStudyDetailPageProps> = ({
     <div className="pt-28 pb-20 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Back Link */}
-        <div className="mb-6">
+        {/* Breadcrumbs & Back Link */}
+        <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <Breadcrumbs 
+            items={[
+              { label: 'Case Studies', path: '/case-studies' },
+              { label: caseStudy.title }
+            ]} 
+            onNavigate={onNavigate} 
+          />
           <button
             onClick={() => onNavigate('/case-studies')}
-            className="text-xs font-bold text-slate-500 hover:text-blue-600 flex items-center gap-1.5 transition-colors"
+            className="text-xs font-bold text-slate-500 hover:text-blue-600 flex items-center gap-1.5 transition-colors self-start sm:self-auto cursor-pointer"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to All Case Studies</span>

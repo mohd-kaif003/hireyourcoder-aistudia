@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Menu, X, ChevronDown, Phone, MessageSquare, ArrowRight, 
-  Terminal, ShieldCheck, Database
+  ShieldCheck, Database, Sparkles, Layers, Users, Globe
 } from 'lucide-react';
 import { servicesData } from '../../data/servicesData';
+import { Logo } from './Logo';
 
 interface NavbarProps {
   currentPath: string;
@@ -48,23 +49,13 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
-          {/* Logo */}
+          {/* Brand Logo using official design */}
           <div 
             id="navbar-brand-logo"
             onClick={() => handleNavClick('/')}
-            className="flex items-center gap-2.5 cursor-pointer group"
+            className="cursor-pointer transition-opacity hover:opacity-90 flex items-center"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-700 via-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform duration-200">
-              <Terminal className="w-5 h-5 text-blue-100" />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-extrabold text-xl tracking-tight text-slate-900 flex items-center gap-1 font-heading">
-                HireYourCoder<span className="text-blue-600 text-2xl leading-none">.</span>
-              </span>
-              <span className="text-[10px] uppercase font-semibold tracking-wider text-slate-500">
-                Technology & Growth Partner
-              </span>
-            </div>
+            <Logo variant="light" size="md" />
           </div>
 
           {/* Desktop Navigation Links */}
@@ -250,7 +241,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     onClick={() => handleNavClick('/pricing')}
                     className="p-2.5 rounded-xl hover:bg-slate-50 cursor-pointer text-sm font-medium text-slate-800 hover:text-blue-600"
                   >
-                    Transparent Pricing
+                    Engagement Models
                   </div>
                   <div 
                     onClick={() => handleNavClick('/blog')}
@@ -328,143 +319,172 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer Menu with Backdrop */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="lg:hidden fixed inset-x-0 top-full bg-white border-b border-slate-200 shadow-xl max-h-[80vh] overflow-y-auto"
-          >
-            <div className="p-4 sm:p-5 flex flex-col gap-1.5">
-              
-              <button 
-                onClick={() => handleNavClick('/')}
-                className="text-left px-3 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-900 hover:bg-slate-50 cursor-pointer"
-              >
-                Home
-              </button>
+          <>
+            {/* Backdrop Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="lg:hidden fixed inset-0 top-[60px] bg-slate-950/60 backdrop-blur-xs z-40"
+            />
 
-              <div className="border-t border-slate-100 pt-2 pb-1">
-                <div className="text-[10px] uppercase font-bold text-slate-400 px-3 py-1 font-mono tracking-wider">Services & Solutions</div>
-                <button 
-                  onClick={() => handleNavClick('/services')}
-                  className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-slate-800 hover:bg-slate-50 font-medium cursor-pointer"
-                >
-                  All 12 Core Services
-                </button>
-                <button 
-                  onClick={() => handleNavClick('/services/ai-automation')}
-                  className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-blue-600 hover:bg-blue-50 font-semibold flex items-center justify-between cursor-pointer"
-                >
-                  <span>AI Automation & Agents</span>
-                  <span className="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-bold">Featured</span>
-                </button>
-                <button 
-                  onClick={() => handleNavClick('/services/performance-marketing')}
-                  className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-slate-800 hover:bg-slate-50 font-medium cursor-pointer"
-                >
-                  Performance Marketing (Google & Meta)
-                </button>
-                <button 
-                  onClick={() => handleNavClick('/services/api-integration')}
-                  className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-slate-800 hover:bg-slate-50 font-medium cursor-pointer"
-                >
-                  API & WhatsApp Integration
-                </button>
+            {/* Slide Down Mobile Sheet */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="lg:hidden fixed inset-x-0 top-[60px] bg-white border-b border-slate-200 shadow-2xl z-50 max-h-[calc(100vh-70px)] overflow-y-auto"
+            >
+              <div className="p-4 sm:p-5 flex flex-col gap-2">
+                
+                {/* Mobile Header Row */}
+                <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+                  <div onClick={() => handleNavClick('/')} className="cursor-pointer">
+                    <Logo variant="light" size="sm" />
+                  </div>
+                  <button
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100"
+                    aria-label="Close menu"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
+                <div className="flex flex-col gap-1">
+                  <button 
+                    onClick={() => handleNavClick('/')}
+                    className="text-left px-3 py-2 rounded-xl font-bold text-sm text-slate-900 hover:bg-slate-50 cursor-pointer"
+                  >
+                    Home
+                  </button>
+
+                  <div className="border-t border-slate-100 pt-2 pb-1">
+                    <div className="text-[11px] uppercase font-bold text-slate-400 px-3 py-1 tracking-wider">Services & Solutions</div>
+                    <button 
+                      onClick={() => handleNavClick('/services')}
+                      className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-slate-800 hover:bg-slate-50 font-medium cursor-pointer"
+                    >
+                      All Core Services
+                    </button>
+                    <button 
+                      onClick={() => handleNavClick('/services/ai-automation')}
+                      className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-blue-600 hover:bg-blue-50 font-semibold flex items-center justify-between cursor-pointer"
+                    >
+                      <span>AI Automation & Agents</span>
+                      <span className="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-bold">Featured</span>
+                    </button>
+                    <button 
+                      onClick={() => handleNavClick('/services/performance-marketing')}
+                      className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-slate-800 hover:bg-slate-50 font-medium cursor-pointer"
+                    >
+                      Performance Marketing (Google & Meta)
+                    </button>
+                    <button 
+                      onClick={() => handleNavClick('/services/api-integration')}
+                      className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-slate-800 hover:bg-slate-50 font-medium cursor-pointer"
+                    >
+                      API & WhatsApp Integration
+                    </button>
+                  </div>
+
+                  <div className="border-t border-slate-100 pt-2 pb-1">
+                    <div className="text-[11px] uppercase font-bold text-slate-400 px-3 py-1 tracking-wider">Explore</div>
+                    <button 
+                      onClick={() => handleNavClick('/dedicated-developers')}
+                      className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-slate-800 hover:bg-slate-50 font-medium cursor-pointer"
+                    >
+                      Hire Dedicated Developers
+                    </button>
+                    <button 
+                      onClick={() => handleNavClick('/industries')}
+                      className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-slate-800 hover:bg-slate-50 font-medium cursor-pointer"
+                    >
+                      Industries Served (15+ Verticals)
+                    </button>
+                    <button 
+                      onClick={() => handleNavClick('/case-studies')}
+                      className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-slate-800 hover:bg-slate-50 font-medium cursor-pointer"
+                    >
+                      Case Studies & Portfolio
+                    </button>
+                    <button 
+                      onClick={() => handleNavClick('/locations')}
+                      className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-slate-800 hover:bg-slate-50 font-medium cursor-pointer"
+                    >
+                      Global & Indian Locations
+                    </button>
+                    <button 
+                      onClick={() => handleNavClick('/pricing')}
+                      className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-slate-800 hover:bg-slate-50 font-medium cursor-pointer"
+                    >
+                      Engagement Models
+                    </button>
+                    <button 
+                      onClick={() => handleNavClick('/about')}
+                      className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-slate-800 hover:bg-slate-50 font-medium cursor-pointer"
+                    >
+                      About HireYourCoder
+                    </button>
+                    <button 
+                      onClick={() => handleNavClick('/faq')}
+                      className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-slate-800 hover:bg-slate-50 font-medium cursor-pointer"
+                    >
+                      FAQs
+                    </button>
+                  </div>
+
+                  {/* Free interactive tools on mobile */}
+                  <div className="bg-slate-50 p-2.5 rounded-xl flex flex-col gap-1.5 my-1 border border-slate-200/60 text-xs">
+                    <div className="text-[10px] uppercase font-bold text-slate-500">Free Planning Tools</div>
+                    <button 
+                      onClick={() => handleNavClick('/free-project-estimate')}
+                      className="text-left text-blue-700 font-semibold hover:underline flex items-center justify-between cursor-pointer"
+                    >
+                      <span>Project Scope & Roadmap Estimator</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </button>
+                    <button 
+                      onClick={() => handleNavClick('/free-website-audit')}
+                      className="text-left text-emerald-700 font-semibold hover:underline flex items-center justify-between cursor-pointer"
+                    >
+                      <span>Instant Website & SEO Audit</span>
+                      <ArrowRight className="w-3 h-3" />
+                    </button>
+                  </div>
+
+                  {/* 2 Buttons in ONE Row on Mobile */}
+                  <div className="pt-2 grid grid-cols-2 gap-2">
+                    <button
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        onOpenConsultation();
+                      }}
+                      className="bg-slate-950 hover:bg-slate-900 text-white py-2.5 px-2 rounded-xl font-semibold text-center text-xs shadow-sm cursor-pointer truncate"
+                    >
+                      Free Consultation
+                    </button>
+                    <a
+                      href="https://wa.me/919568497688?text=Hi%20HireYourCoder%20team,%20I%20would%20like%20to%20discuss%20a%20project."
+                      target="_blank"
+                      rel="noreferrer"
+                      className="bg-emerald-50 text-emerald-800 border border-emerald-200 py-2.5 px-2 rounded-xl font-semibold text-center text-xs flex items-center justify-center gap-1 truncate"
+                    >
+                      <MessageSquare className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                      <span>WhatsApp</span>
+                    </a>
+                  </div>
+
+                </div>
+
               </div>
-
-              <div className="border-t border-slate-100 pt-2 pb-1">
-                <div className="text-[10px] uppercase font-bold text-slate-400 px-3 py-1 font-mono tracking-wider">Explore</div>
-                <button 
-                  onClick={() => handleNavClick('/dedicated-developers')}
-                  className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-slate-800 hover:bg-slate-50 font-medium cursor-pointer"
-                >
-                  Hire Dedicated Developers
-                </button>
-                <button 
-                  onClick={() => handleNavClick('/industries')}
-                  className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-slate-800 hover:bg-slate-50 font-medium cursor-pointer"
-                >
-                  Industries Served (15+ Verticals)
-                </button>
-                <button 
-                  onClick={() => handleNavClick('/case-studies')}
-                  className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-slate-800 hover:bg-slate-50 font-medium cursor-pointer"
-                >
-                  Case Studies & Portfolio
-                </button>
-                <button 
-                  onClick={() => handleNavClick('/locations')}
-                  className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-slate-800 hover:bg-slate-50 font-medium cursor-pointer"
-                >
-                  Global & Indian Locations
-                </button>
-                <button 
-                  onClick={() => handleNavClick('/pricing')}
-                  className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-slate-800 hover:bg-slate-50 font-medium cursor-pointer"
-                >
-                  Transparent Pricing
-                </button>
-                <button 
-                  onClick={() => handleNavClick('/about')}
-                  className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-slate-800 hover:bg-slate-50 font-medium cursor-pointer"
-                >
-                  About HireYourCoder
-                </button>
-                <button 
-                  onClick={() => handleNavClick('/faq')}
-                  className="w-full text-left px-3 py-1.5 rounded-lg text-xs sm:text-sm text-slate-800 hover:bg-slate-50 font-medium cursor-pointer"
-                >
-                  FAQs
-                </button>
-              </div>
-
-              {/* Free tools highlight on mobile */}
-              <div className="bg-slate-50 p-2.5 rounded-xl flex flex-col gap-1.5 my-1 border border-slate-200/60 text-xs">
-                <div className="text-[10px] uppercase font-bold text-slate-500 font-mono">Free Tools & Audits</div>
-                <button 
-                  onClick={() => handleNavClick('/free-project-estimate')}
-                  className="text-left text-blue-700 font-semibold hover:underline flex items-center justify-between cursor-pointer"
-                >
-                  <span>Project Cost Estimator</span>
-                  <ArrowRight className="w-3 h-3" />
-                </button>
-                <button 
-                  onClick={() => handleNavClick('/free-website-audit')}
-                  className="text-left text-emerald-700 font-semibold hover:underline flex items-center justify-between cursor-pointer"
-                >
-                  <span>Website & SEO Audit</span>
-                  <ArrowRight className="w-3 h-3" />
-                </button>
-              </div>
-
-              {/* Action CTA Buttons */}
-              <div className="pt-2 flex flex-col gap-2">
-                <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    onOpenConsultation();
-                  }}
-                  className="w-full bg-slate-950 hover:bg-slate-900 text-white py-2.5 rounded-xl font-semibold text-center text-xs sm:text-sm shadow-sm cursor-pointer"
-                >
-                  Get Free Consultation
-                </button>
-                <a
-                  href="https://wa.me/919568497688?text=Hi%20HireYourCoder%20team,%20I%20would%20like%20to%20discuss%20a%20project."
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-full bg-emerald-50 text-emerald-800 border border-emerald-200 py-2 rounded-xl font-semibold text-center text-xs sm:text-sm flex items-center justify-center gap-1.5"
-                >
-                  <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Chat on WhatsApp</span>
-                </a>
-              </div>
-
-            </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

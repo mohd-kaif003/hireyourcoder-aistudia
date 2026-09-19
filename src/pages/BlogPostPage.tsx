@@ -1,6 +1,7 @@
 import React from 'react';
 import { BlogPost } from '../types';
 import { ArrowLeft, Calendar, Clock, Tag, Share2, Sparkles, MessageSquare } from 'lucide-react';
+import { Breadcrumbs } from '../components/common/Breadcrumbs';
 
 interface BlogPostPageProps {
   post: BlogPost;
@@ -17,11 +18,18 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({
     <div className="pt-28 pb-20 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Back Link */}
-        <div className="mb-6">
+        {/* Breadcrumbs & Back Link */}
+        <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <Breadcrumbs 
+            items={[
+              { label: 'Blog', path: '/blog' },
+              { label: post.title }
+            ]} 
+            onNavigate={onNavigate} 
+          />
           <button
             onClick={() => onNavigate('/blog')}
-            className="text-xs font-bold text-slate-500 hover:text-blue-600 flex items-center gap-1.5 transition-colors"
+            className="text-xs font-bold text-slate-500 hover:text-blue-600 flex items-center gap-1.5 transition-colors self-start sm:self-auto cursor-pointer"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to All Articles</span>

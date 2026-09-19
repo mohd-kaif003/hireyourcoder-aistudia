@@ -5,6 +5,7 @@ import {
   Send, Phone, Clock, ArrowRight, ShieldCheck 
 } from 'lucide-react';
 import { saveNewLead } from '../utils/leadsStorage';
+import { Breadcrumbs } from '../components/common/Breadcrumbs';
 
 interface LocationDetailPageProps {
   location: LocationItem;
@@ -25,7 +26,7 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
     phone: '',
     company: '',
     service: popularServicesList[0] || 'Website Development',
-    budget: '$2,500 - $5,000 (₹1.75L - ₹3.5L)',
+    budget: 'Growth Stage / Production Platform',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -64,11 +65,18 @@ export const LocationDetailPage: React.FC<LocationDetailPageProps> = ({
     <div className="pt-28 pb-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Back Link */}
-        <div className="mb-6">
+        {/* Breadcrumbs & Back Link */}
+        <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <Breadcrumbs 
+            items={[
+              { label: 'Global Delivery', path: '/locations' },
+              { label: location.name }
+            ]} 
+            onNavigate={onNavigate} 
+          />
           <button
             onClick={() => onNavigate('/locations')}
-            className="text-xs font-bold text-slate-500 hover:text-blue-600 flex items-center gap-1.5 transition-colors"
+            className="text-xs font-bold text-slate-500 hover:text-blue-600 flex items-center gap-1.5 transition-colors self-start sm:self-auto cursor-pointer"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to All Locations</span>

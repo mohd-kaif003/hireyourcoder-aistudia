@@ -5,6 +5,7 @@ import {
   Lock, MessageSquare, Send, Check, Code2, Award, FileCode 
 } from 'lucide-react';
 import { saveNewLead } from '../utils/leadsStorage';
+import { Breadcrumbs } from '../components/common/Breadcrumbs';
 
 interface DedicatedDevelopersPageProps {
   onOpenConsultation: () => void;
@@ -45,7 +46,7 @@ export const DedicatedDevelopersPage: React.FC<DedicatedDevelopersPageProps> = (
         country: 'Global / Inbound',
         service: 'Dedicated Developers',
         projectType: `Hire ${formData.developersCount} - ${formData.roleNeeded} (${selectedModel})`,
-        budget: '$2,000 - $4,500 / month / developer',
+        budget: 'Dedicated Pod / Augmentation',
         timeline: formData.timeline,
         message: `Hiring Request for ${formData.developersCount} ${formData.roleNeeded}. Model: ${selectedModel}. Additional notes: ${formData.notes}`,
         source: 'Dedicated Developers Page',
@@ -65,6 +66,17 @@ export const DedicatedDevelopersPage: React.FC<DedicatedDevelopersPageProps> = (
     <div className="pt-28 pb-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
+        {/* Breadcrumbs */}
+        <div className="mb-6">
+          <Breadcrumbs 
+            items={[
+              { label: 'Talent & Augmentation', path: '/services' },
+              { label: 'Dedicated Developers' }
+            ]} 
+            onNavigate={onNavigate} 
+          />
+        </div>
+
         {/* Hero Section */}
         <div className="text-center max-w-4xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-wider mb-4">

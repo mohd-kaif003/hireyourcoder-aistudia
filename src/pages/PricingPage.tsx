@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
   Check, ArrowRight, Sparkles, HelpCircle, Shield, 
-  MessageSquare, Calculator 
+  MessageSquare, Layers, Clock, Users, Calendar
 } from 'lucide-react';
+import { Breadcrumbs } from '../components/common/Breadcrumbs';
 
 interface PricingPageProps {
   onOpenConsultation: () => void;
@@ -10,139 +11,116 @@ interface PricingPageProps {
 }
 
 export const PricingPage: React.FC<PricingPageProps> = ({ onOpenConsultation, onNavigate }) => {
-  const [billingCurrency, setBillingCurrency] = useState<'USD' | 'INR'>('USD');
-
-  const pricingTiers = [
+  const engagementTiers = [
     {
-      name: 'Starter Web / MVP',
-      badge: 'Best for Small Businesses & Startups',
-      priceUSD: '$1,200',
-      priceINR: '₹85,000',
-      period: 'one-time milestone',
-      description: 'Ultra-fast modern marketing website or early prototype built on Next.js 15, responsive Tailwind CSS, and headless CMS.',
+      name: 'Starter Platform / MVP',
+      badge: 'Rapid Launch Framework',
+      duration: '2 to 3-Week Delivery',
+      scopeLevel: 'Early-Stage & Small Business',
+      description: 'High-speed modern responsive web platform built with clean design, mobile-first responsiveness, and search engine readiness.',
       features: [
         '5 to 8 Custom Responsive Pages',
-        'Next.js 15 App Router & React 19',
-        'Headless CMS or Markdown Integration',
-        '95+ Core Web Vitals PageSpeed Score',
-        'Technical SEO & OpenGraph Setup',
+        'Mobile-First UI/UX & Tailwind Styling',
+        'Headless Content Management Setup',
+        'Sub-Second Page Load Optimization',
+        'Full Technical SEO & Social Graph Meta',
         'Lead Capture Forms with WhatsApp Alerts',
         '30-Day Post-Launch Bug Warranty',
-        'Full Source Code Repository Handover'
+        '100% Source Code & IP Handover'
       ],
-      ctaText: 'Start Starter Project',
+      ctaText: 'Request MVP Scope',
       popular: false
     },
     {
       name: 'Custom Web App / SaaS',
-      badge: 'Most Popular for High-Growth Brands',
-      priceUSD: '$3,500',
-      priceINR: '₹2,50,000',
-      period: 'typical 4-6 week sprint',
-      description: 'End-to-end full-stack web application with authentication, database schemas, role-based dashboards, and payment gateway APIs.',
+      badge: 'Full-Cycle Development',
+      duration: '4 to 6-Week Milestone Sprint',
+      scopeLevel: 'High-Growth Startups & Brands',
+      description: 'End-to-end full-stack web application with authentication, scalable database architecture, role-based dashboards, and payment integrations.',
       features: [
-        'Custom Database Schema (PostgreSQL/Supabase)',
-        'Authentication & RBAC User Roles',
+        'Custom Relational Database Architecture',
+        'Authentication & Role-Based Access (RBAC)',
         'Responsive Admin Dashboard & Client Portal',
-        'Stripe / Razorpay Payment Integration',
-        'REST / GraphQL API Endpoints',
-        'Automated Email & WhatsApp Notifications',
-        'Dockerized Deployment on AWS or Vercel',
-        'Weekly Staging Previews & Sprint Demos',
-        '60-Day Post-Launch Bug Warranty'
+        'Payment Gateway & Billing Integration',
+        'Clean RESTful / Webhook API Endpoints',
+        'Automated Email & WhatsApp Triggers',
+        'Automated Cloud Staging & Deployment',
+        'Bi-Weekly Sprint Demos & Milestone Reviews',
+        '60-Day Post-Launch Support & Warranty'
       ],
-      ctaText: 'Build Custom Platform',
+      ctaText: 'Request Platform Scope',
       popular: true
     },
     {
       name: 'Dedicated Senior Developer',
-      badge: 'Flexible Monthly Engagement',
-      priceUSD: '$2,200',
-      priceINR: '₹1,60,000',
-      period: 'per month (160 hours)',
-      description: 'Hire a dedicated senior engineer (Full Stack, Next.js, Node, Python, or Mobile) dedicated 100% to your product roadmap.',
+      badge: 'Staff Augmentation Pod',
+      duration: 'Full-Time (160 Hours / Month)',
+      scopeLevel: 'Engineering Teams & Founders',
+      description: 'Senior engineer (Full Stack, React, Node, Python, or Mobile) dedicated 100% to your product roadmap with direct repo and Slack access.',
       features: [
-        '160 Productive Hours per Month',
-        'Direct Slack / Teams Communication',
+        '160 Dedicated Hours per Month',
+        'Direct Slack / Teams & Jira Integration',
         'Daily Standups & 4-5 Hour Timezone Overlap',
         'Direct Git Repository Access & Daily Commits',
-        '1-Week Risk-Free Trial Period',
+        '1-Week Risk-Free Alignment Trial',
         'Strict NDA & Complete Intellectual Property Ownership',
-        'Free Replacement Guarantee If Not 100% Aligned',
+        'Free Developer Replacement Guarantee',
         'Zero Payroll Overhead or Benefits Friction'
       ],
-      ctaText: 'Hire Dedicated Developer',
+      ctaText: 'Interview Developers',
       popular: false
     },
     {
       name: 'AI Automation & Retainers',
-      badge: 'Operational Efficiency',
-      priceUSD: '$1,800',
-      priceINR: '₹1,25,000',
-      period: 'custom integration / retainer',
-      description: 'Autonomous AI workflow agents, WhatsApp Cloud API integrations, custom CRM synchronization, and performance marketing funnels.',
+      badge: 'Continuous Evolution',
+      duration: 'Custom Sprint or Monthly Retainer',
+      scopeLevel: 'Operational Scaling & Enterprises',
+      description: 'Autonomous AI workflow agents, official WhatsApp Cloud API integrations, custom CRM synchronization, and performance optimization.',
       features: [
-        'Custom WhatsApp Business API Bot & Flows',
-        'LLM Agent with Company Knowledge RAG',
-        'n8n / Make.com Webhook Integrations',
-        'CRM Bi-Directional Synchronization',
-        'Google Analytics 4 & Meta CAPI Server Tracking',
-        'Weekly Performance Optimization Audits',
+        'Custom WhatsApp Business API Workflows',
+        'LLM Agent with Proprietary Knowledge Base',
+        'Webhook & Multi-Platform Data Synchronization',
+        'Bi-Directional CRM & Lead Automation',
+        'Full Analytics & Funnel Event Tracking',
+        'Weekly Technical Optimization Audits',
         'Dedicated Solutions Architect Support'
       ],
-      ctaText: 'Deploy AI Automations',
+      ctaText: 'Discuss Automation Scope',
       popular: false
     }
   ];
 
   return (
-    <div className="pt-28 pb-20 bg-slate-50/60">
+    <div className="pt-24 sm:pt-28 pb-20 bg-slate-50/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
+        {/* Breadcrumbs */}
+        <Breadcrumbs 
+          items={[{ label: 'Engagement & Delivery Models' }]} 
+          onNavigate={onNavigate} 
+          className="mb-4"
+        />
+
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wider mb-3">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Transparent Engineering Investment</span>
+            <span>Structured Delivery Framework</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-950 font-heading tracking-tight">
-            Predictable Pricing. No Hidden Surprises.
+            Engagement Models & Delivery Plans
           </h1>
-          <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
-            All engagements feature itemized deliverables, transparent milestone schedules, and 100% intellectual property handover upon completion.
+          <p className="mt-3.5 sm:mt-4 text-sm sm:text-base text-slate-600 leading-relaxed">
+            Every engagement features clear scope definitions, sprint-based milestones, rigorous code standards, and 100% intellectual property ownership.
           </p>
-
-          {/* Currency Switcher */}
-          <div className="inline-flex items-center p-1 rounded-2xl bg-white border border-slate-200 mt-8 shadow-xs">
-            <button
-              onClick={() => setBillingCurrency('USD')}
-              className={`px-5 py-2 rounded-xl text-xs font-bold transition-colors ${
-                billingCurrency === 'USD'
-                  ? 'bg-blue-600 text-white shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              USD ($) - International
-            </button>
-            <button
-              onClick={() => setBillingCurrency('INR')}
-              className={`px-5 py-2 rounded-xl text-xs font-bold transition-colors ${
-                billingCurrency === 'INR'
-                  ? 'bg-blue-600 text-white shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              INR (₹) - India Domestic
-            </button>
-          </div>
         </div>
 
-        {/* 4 Pricing Cards Grid */}
+        {/* 4 Cards Grid - No Prices */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {pricingTiers.map((tier) => (
+          {engagementTiers.map((tier) => (
             <div
               key={tier.name}
-              className={`rounded-3xl p-7 flex flex-col justify-between transition-all duration-300 relative ${
+              className={`rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 relative ${
                 tier.popular
                   ? 'bg-white border-2 border-blue-600 shadow-xl lg:-translate-y-2'
                   : 'bg-white border border-slate-200 shadow-xs hover:shadow-md'
@@ -155,7 +133,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onOpenConsultation, on
               )}
 
               <div>
-                <span className="text-[11px] font-mono text-blue-600 uppercase font-bold block mb-1">
+                <span className="text-[11px] text-blue-600 uppercase font-bold block mb-1">
                   {tier.badge}
                 </span>
 
@@ -163,21 +141,21 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onOpenConsultation, on
                   {tier.name}
                 </h3>
 
-                <div className="mt-4 mb-3">
-                  <span className="text-3xl font-extrabold text-slate-950 font-heading">
-                    {billingCurrency === 'USD' ? tier.priceUSD : tier.priceINR}
+                <div className="mt-3 mb-4 p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                  <span className="text-xs font-bold text-slate-900 block">
+                    {tier.duration}
                   </span>
-                  <span className="text-xs text-slate-500 font-medium block mt-0.5">
-                    {tier.period}
+                  <span className="text-[11px] text-slate-500 font-medium block mt-0.5">
+                    {tier.scopeLevel}
                   </span>
                 </div>
 
-                <p className="text-xs text-slate-600 leading-relaxed min-h-[48px]">
+                <p className="text-xs text-slate-600 leading-relaxed min-h-[44px]">
                   {tier.description}
                 </p>
 
-                <div className="mt-6 pt-5 border-t border-slate-100 space-y-2.5">
-                  <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">What is Included:</div>
+                <div className="mt-5 pt-4 border-t border-slate-100 space-y-2">
+                  <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Scope Deliverables:</div>
                   {tier.features.map((feat, idx) => (
                     <div key={idx} className="flex items-start gap-2 text-xs text-slate-700">
                       <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
@@ -190,7 +168,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onOpenConsultation, on
               <div className="mt-8 pt-4 border-t border-slate-100">
                 <button
                   onClick={onOpenConsultation}
-                  className={`w-full py-3 rounded-xl text-xs font-bold transition-all shadow-xs ${
+                  className={`w-full py-3 rounded-xl text-xs font-bold transition-all shadow-xs cursor-pointer ${
                     tier.popular
                       ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-blue-500/20'
                       : 'bg-slate-900 hover:bg-blue-600 text-white'
@@ -199,69 +177,81 @@ export const PricingPage: React.FC<PricingPageProps> = ({ onOpenConsultation, on
                   {tier.ctaText}
                 </button>
               </div>
-
             </div>
           ))}
         </div>
 
-        {/* Milestone Payment Structure Banner */}
-        <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200 shadow-xs mb-16">
-          <div className="max-w-3xl">
-            <h3 className="text-xl font-bold text-slate-950 font-heading">
-              Our Risk-Free Milestone Payment Structure
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-              We never ask for 100% upfront fees. For fixed-scope projects, we divide engagements into 3-4 transparent milestones aligned with visible deliverables:
+        {/* Enterprise Governance & Guarantees */}
+        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-sm mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-950 font-heading">
+              Our Delivery Standards & Client Guarantees
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 mt-2">
+              We eliminate technical and financial risks with transparent governance.
             </p>
+          </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mt-6">
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
-                <div className="text-lg font-bold font-mono text-blue-600">30%</div>
-                <div className="text-xs font-bold text-slate-900 mt-1">Kickoff & Wireframes</div>
-                <div className="text-[11px] text-slate-500 mt-0.5">Architecture & UX design</div>
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center sm:text-left">
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100">
+              <Shield className="w-6 h-6 text-blue-600 mb-3 mx-auto sm:mx-0" />
+              <h4 className="font-bold text-sm text-slate-900">100% IP Handover</h4>
+              <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                All source code, database structures, designs, and credentials belong entirely to you from day one.
+              </p>
+            </div>
 
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
-                <div className="text-lg font-bold font-mono text-blue-600">30%</div>
-                <div className="text-xs font-bold text-slate-900 mt-1">Sprint Staging Alpha</div>
-                <div className="text-[11px] text-slate-500 mt-0.5">Core feature development</div>
-              </div>
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100">
+              <Clock className="w-6 h-6 text-blue-600 mb-3 mx-auto sm:mx-0" />
+              <h4 className="font-bold text-sm text-slate-900">Sprint-Based Milestones</h4>
+              <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                Engagements are broken into clear sprints with live staging reviews before any milestone sign-off.
+              </p>
+            </div>
 
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
-                <div className="text-lg font-bold font-mono text-blue-600">20%</div>
-                <div className="text-xs font-bold text-slate-900 mt-1">QA & Beta Testing</div>
-                <div className="text-[11px] text-slate-500 mt-0.5">Client UAT & bug fixes</div>
-              </div>
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100">
+              <Users className="w-6 h-6 text-blue-600 mb-3 mx-auto sm:mx-0" />
+              <h4 className="font-bold text-sm text-slate-900">1-Week Trial Period</h4>
+              <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                For dedicated developer pods, test alignment for 1 full week before committing to the full cycle.
+              </p>
+            </div>
 
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
-                <div className="text-lg font-bold font-mono text-emerald-600">20%</div>
-                <div className="text-xs font-bold text-slate-900 mt-1">Production Launch</div>
-                <div className="text-[11px] text-slate-500 mt-0.5">DNS point & repo transfer</div>
-              </div>
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-100">
+              <Calendar className="w-6 h-6 text-blue-600 mb-3 mx-auto sm:mx-0" />
+              <h4 className="font-bold text-sm text-slate-900">Post-Launch Warranty</h4>
+              <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                Every project includes 30 to 60 days of guaranteed post-launch bug fixing and performance monitoring.
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Estimate Calculator CTA */}
-        <div className="p-8 rounded-3xl bg-slate-900 text-white flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <div className="flex items-center gap-2 text-blue-400 text-xs font-mono font-bold uppercase mb-1">
-              <Calculator className="w-4 h-4" />
-              <span>Interactive Estimator</span>
-            </div>
-            <h3 className="text-xl font-bold font-heading">
-              Need a personalized budget breakdown right now?
+        {/* Interactive Scope Estimator Banner */}
+        <div className="bg-gradient-to-r from-blue-900 via-indigo-950 to-slate-950 rounded-3xl p-6 sm:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+          <div className="max-w-xl text-center md:text-left">
+            <span className="text-blue-300 text-xs font-bold uppercase tracking-wider">Custom Requirements?</span>
+            <h3 className="text-2xl sm:text-3xl font-extrabold mt-1 font-heading">
+              Plan Your Product Roadmap with Our Estimator Tool
             </h3>
-            <p className="text-slate-400 text-xs sm:text-sm mt-1">
-              Use our 6-step project estimate calculator to receive an instant timeline and price range.
+            <p className="text-slate-300 text-xs sm:text-sm mt-2 leading-relaxed">
+              Select features, platforms, team configurations, and timelines to generate a detailed milestone proposal.
             </p>
           </div>
-          <button
-            onClick={() => onNavigate('/free-project-estimate')}
-            className="bg-blue-600 hover:bg-blue-500 text-white font-bold px-6 py-3.5 rounded-xl text-xs shrink-0 transition-colors shadow-lg shadow-blue-500/25"
-          >
-            Launch Interactive Calculator
-          </button>
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0">
+            <button
+              onClick={() => onNavigate('/free-project-estimate')}
+              className="bg-white hover:bg-slate-100 text-slate-950 font-bold px-6 py-3.5 rounded-xl text-xs sm:text-sm transition-colors text-center cursor-pointer"
+            >
+              Launch Scope Estimator
+            </button>
+            <button
+              onClick={onOpenConsultation}
+              className="bg-blue-600 hover:bg-blue-500 text-white font-bold px-6 py-3.5 rounded-xl text-xs sm:text-sm transition-colors text-center cursor-pointer"
+            >
+              Schedule Discovery Call
+            </button>
+          </div>
         </div>
 
       </div>

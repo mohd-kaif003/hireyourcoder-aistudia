@@ -11,8 +11,8 @@ export const faqsData: FAQCategoryGroup[] = [
     category: 'Web Development',
     items: [
       {
-        question: 'How much does website development cost?',
-        answer: 'Custom website projects typically start from $1,200 (approx. ₹85,000) for high-performance marketing websites and range up to $5,000+ for large-scale enterprise portals with custom CMS, integrations, and multilingual capabilities. We provide transparent, itemized fixed-price quotes before starting any work.'
+        question: 'How are website development projects scoped and delivered?',
+        answer: 'Website and web application projects are scoped based on your specific functional specifications, design fidelity, third-party integrations, and architectural requirements. We provide transparent, itemized milestone proposals with clear sprint deliverables and guaranteed timelines before starting any work.'
       },
       {
         question: 'How long does a website take to build and launch?',
@@ -107,15 +107,15 @@ export const faqsData: FAQCategoryGroup[] = [
     ]
   },
   {
-    category: 'Pricing & Engagement',
+    category: 'Engagement & Collaboration',
     items: [
       {
-        question: 'What are your payment terms and milestones?',
-        answer: 'For fixed-scope projects, we typically operate on a milestone structure: 30% initial deposit upon contract execution, 40% upon frontend and API review milestone, and 30% upon final testing and production deployment. For dedicated developers, billing is monthly in advance.'
+        question: 'What are your engagement terms and milestones?',
+        answer: 'For fixed-scope projects, we typically operate on a milestone structure: initial discovery & architecture deposit, frontend and API review milestone, and final staging verification before production deployment. For dedicated developers, engagement operates on flexible monthly sprint retainers.'
       },
       {
         question: 'Do you charge ongoing maintenance fees after launch?',
-        answer: 'We include 30 days of comprehensive post-launch warranty and bug-fix support with every project. After that, we offer flexible ongoing SLA maintenance plans covering cloud monitoring, security patches, and minor feature updates starting at $250/month.'
+        answer: 'We include 30 days of comprehensive post-launch warranty and bug-fix support with every project. After that, we offer flexible ongoing SLA maintenance plans covering cloud monitoring, security patches, performance audits, and continuous sprint enhancements.'
       }
     ]
   },

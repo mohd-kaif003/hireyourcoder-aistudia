@@ -47,7 +47,7 @@ export const servicesData: ServiceItem[] = [
     relatedServices: ['seo-services', 'web-application', 'performance-marketing'],
     relatedIndustries: ['saas', 'real-estate', 'healthcare', 'professional-services'],
     relatedLocations: ['moradabad', 'delhi', 'bangalore', 'usa', 'uk', 'uae'],
-    startingPrice: '$1,200 / ₹85,000'
+    startingPrice: 'Milestone Sprint / Scope Based'
   },
   {
     id: 'web-application',
@@ -94,7 +94,7 @@ export const servicesData: ServiceItem[] = [
     relatedServices: ['saas-development', 'api-integration', 'dedicated-developers'],
     relatedIndustries: ['finance', 'logistics', 'manufacturing', 'healthcare'],
     relatedLocations: ['bangalore', 'noida', 'delhi', 'usa', 'singapore'],
-    startingPrice: '$2,800 / ₹1,95,000'
+    startingPrice: 'Milestone Sprint / Full Architecture'
   },
   {
     id: 'mobile-app-development',
@@ -141,7 +141,7 @@ export const servicesData: ServiceItem[] = [
     relatedServices: ['web-application', 'api-integration', 'ai-automation'],
     relatedIndustries: ['ecommerce', 'healthcare', 'restaurants', 'logistics'],
     relatedLocations: ['mumbai', 'bangalore', 'delhi', 'uae', 'usa'],
-    startingPrice: '$3,200 / ₹2,25,000'
+    startingPrice: 'Milestone Sprint / Full Build'
   },
   {
     id: 'ai-automation',
@@ -188,7 +188,7 @@ export const servicesData: ServiceItem[] = [
     relatedServices: ['crm-business-automation', 'api-integration', 'web-development'],
     relatedIndustries: ['real-estate', 'restaurants', 'healthcare', 'ecommerce', 'saas'],
     relatedLocations: ['delhi', 'gurgaon', 'bangalore', 'moradabad', 'usa', 'uae'],
-    startingPrice: '$1,800 / ₹1,25,000'
+    startingPrice: 'Milestone Sprint / Retainer'
   },
   {
     id: 'digital-marketing',
@@ -235,7 +235,7 @@ export const servicesData: ServiceItem[] = [
     relatedServices: ['seo-services', 'performance-marketing', 'web-development'],
     relatedIndustries: ['saas', 'professional-services', 'ecommerce', 'healthcare'],
     relatedLocations: ['delhi', 'noida', 'mumbai', 'usa', 'uk'],
-    startingPrice: '$850 / month (₹60,000)'
+    startingPrice: 'Monthly Growth Retainer'
   },
   {
     id: 'performance-marketing',
@@ -282,7 +282,7 @@ export const servicesData: ServiceItem[] = [
     relatedServices: ['digital-marketing', 'web-development', 'crm-business-automation'],
     relatedIndustries: ['ecommerce', 'real-estate', 'saas', 'education', 'healthcare'],
     relatedLocations: ['gurgaon', 'delhi', 'mumbai', 'bangalore', 'usa', 'uae'],
-    startingPrice: '$1,000 / month (₹75,000) + Ad Spend'
+    startingPrice: 'Performance Growth Retainer'
   },
   {
     id: 'api-integration',
@@ -329,7 +329,7 @@ export const servicesData: ServiceItem[] = [
     relatedServices: ['ai-automation', 'crm-business-automation', 'web-application'],
     relatedIndustries: ['ecommerce', 'logistics', 'finance', 'restaurants'],
     relatedLocations: ['moradabad', 'noida', 'delhi', 'bangalore', 'usa'],
-    startingPrice: '$750 / ₹55,000'
+    startingPrice: 'Integration Sprint / Turnkey'
   },
   {
     id: 'dedicated-developers',
@@ -377,7 +377,7 @@ export const servicesData: ServiceItem[] = [
     relatedServices: ['web-application', 'mobile-app-development', 'saas-development'],
     relatedIndustries: ['startups', 'saas', 'finance', 'healthcare'],
     relatedLocations: ['usa', 'uk', 'uae', 'canada', 'australia', 'bangalore'],
-    startingPrice: '$18 / hr (Starting $2,200 / month)'
+    startingPrice: 'Dedicated Full-Time Pod'
   },
   {
     id: 'seo-services',
@@ -423,7 +423,7 @@ export const servicesData: ServiceItem[] = [
     relatedServices: ['digital-marketing', 'web-development', 'performance-marketing'],
     relatedIndustries: ['real-estate', 'healthcare', 'ecommerce', 'restaurants'],
     relatedLocations: ['moradabad', 'delhi', 'jaipur', 'mumbai', 'usa'],
-    startingPrice: '$700 / month (₹50,000)'
+    startingPrice: 'Monthly Organic Retainer'
   },
   {
     id: 'ecommerce-development',
@@ -469,7 +469,7 @@ export const servicesData: ServiceItem[] = [
     relatedServices: ['performance-marketing', 'api-integration', 'web-development'],
     relatedIndustries: ['ecommerce', 'retail', 'manufacturing'],
     relatedLocations: ['mumbai', 'delhi', 'moradabad', 'usa', 'uae'],
-    startingPrice: '$1,600 / ₹1,15,000'
+    startingPrice: 'Storefront Milestone Sprint'
   },
   {
     id: 'saas-development',
@@ -515,7 +515,7 @@ export const servicesData: ServiceItem[] = [
     relatedServices: ['web-application', 'dedicated-developers', 'api-integration'],
     relatedIndustries: ['saas', 'startups', 'finance', 'healthcare'],
     relatedLocations: ['bangalore', 'noida', 'usa', 'uk', 'singapore'],
-    startingPrice: '$3,800 / ₹2,75,000'
+    startingPrice: 'Full-Cycle MVP Sprint'
   },
   {
     id: 'crm-business-automation',
@@ -561,6 +561,6 @@ export const servicesData: ServiceItem[] = [
     relatedServices: ['ai-automation', 'api-integration', 'performance-marketing'],
     relatedIndustries: ['real-estate', 'manufacturing', 'healthcare', 'education'],
     relatedLocations: ['moradabad', 'delhi', 'gurgaon', 'mumbai', 'usa'],
-    startingPrice: '$2,200 / ₹1,60,000'
+    startingPrice: 'Milestone Sprint / Custom Pipeline'
   }
 ];

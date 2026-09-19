@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { 
-  Terminal, Mail, Phone, MessageSquare, ArrowRight, 
+  Mail, Phone, MessageSquare, ArrowRight, 
   Globe, Shield, Heart, Linkedin, Twitter, Github
 } from 'lucide-react';
+import { Logo } from './Logo';
 
 interface FooterProps {
   onNavigate: (path: string) => void;
@@ -13,7 +14,7 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenConsultation, onOpenCRM }) => {
   return (
-    <footer className="bg-slate-950 text-slate-300 pt-12 sm:pt-16 pb-24 sm:pb-12 border-t border-slate-800">
+    <footer className="bg-slate-950 text-slate-300 pt-12 sm:pt-16 pb-12 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Pre-Footer Action Banner */}
@@ -21,14 +22,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenConsultation, 
           <div className="absolute -right-16 -bottom-16 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
           <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 sm:gap-6">
             <div className="max-w-2xl">
-              <span className="text-[11px] uppercase tracking-wider font-bold text-blue-400 font-mono">
+              <span className="text-[11px] uppercase tracking-wider font-bold text-blue-400">
                 Technical Discovery
               </span>
               <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white mt-1 font-heading">
                 Turn your product roadmap into high-performance software.
               </h3>
               <p className="text-slate-400 text-xs sm:text-sm mt-1.5 leading-relaxed">
-                Schedule a 30-minute free architectural consultation. No sales fluff—just clear architecture guidance, honest timelines, and estimated milestone budgets.
+                Schedule a 30-minute free architectural consultation. No sales fluff—just clear architecture guidance, honest timelines, and dedicated engineering pods.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-center gap-2.5 w-full md:w-auto shrink-0">
@@ -47,7 +48,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenConsultation, 
                 onClick={() => onNavigate('/free-project-estimate')}
                 className="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-white font-medium px-4 py-3 rounded-xl border border-slate-700 transition-colors text-center text-xs sm:text-sm cursor-pointer"
               >
-                Calculate Estimate
+                Roadmap Estimator
               </motion.button>
             </div>
           </div>
@@ -60,17 +61,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenConsultation, 
           <div className="col-span-2 md:col-span-3 lg:col-span-2">
             <div 
               onClick={() => onNavigate('/')}
-              className="flex items-center gap-2 cursor-pointer mb-3.5"
+              className="cursor-pointer mb-4 flex items-center hover:opacity-90 transition-opacity"
             >
-              <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold shadow-xs">
-                <Terminal className="w-4 h-4 text-white" />
-              </div>
-              <span className="font-extrabold text-lg tracking-tight text-white font-heading">
-                HireYourCoder<span className="text-blue-500">.</span>
-              </span>
+              <Logo variant="dark" size="md" />
             </div>
             <p className="text-slate-400 text-xs leading-relaxed mb-4">
-              HireYourCoder is an international technology agency. We engineer custom web applications, mobile apps, AI automation systems, and high-velocity dedicated engineering teams for ambitious startups and enterprises globally.
+              HireYourCoder is a modern engineering and automation agency. We architect custom web applications, mobile platforms, AI automation systems, and high-velocity dedicated developer pods for high-growth businesses and enterprises worldwide.
             </p>
 
             <div className="space-y-1.5 text-xs text-slate-300 mb-5">
@@ -163,10 +159,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenConsultation, 
           <div>
             <h4 className="text-white font-bold text-xs uppercase tracking-wider mb-3">Resources & Company</h4>
             <ul className="space-y-2 text-xs text-slate-400">
-              <li><button onClick={() => onNavigate('/free-project-estimate')} className="text-emerald-400 hover:text-emerald-300 font-medium cursor-pointer">Free Project Cost Tool</button></li>
+              <li><button onClick={() => onNavigate('/free-project-estimate')} className="text-emerald-400 hover:text-emerald-300 font-medium cursor-pointer">Scope & Roadmap Estimator</button></li>
               <li><button onClick={() => onNavigate('/free-website-audit')} className="text-amber-400 hover:text-amber-300 font-medium cursor-pointer">Free Website & SEO Audit</button></li>
               <li><button onClick={() => onNavigate('/case-studies')} className="hover:text-white transition-colors cursor-pointer">Client Case Studies</button></li>
-              <li><button onClick={() => onNavigate('/pricing')} className="hover:text-white transition-colors cursor-pointer">Transparent Pricing</button></li>
+              <li><button onClick={() => onNavigate('/pricing')} className="hover:text-white transition-colors cursor-pointer">Engagement Models</button></li>
               <li><button onClick={() => onNavigate('/blog')} className="hover:text-white transition-colors cursor-pointer">Engineering Blog</button></li>
               <li><button onClick={() => onNavigate('/faq')} className="hover:text-white transition-colors cursor-pointer">FAQs</button></li>
               <li><button onClick={() => onNavigate('/about')} className="hover:text-white transition-colors cursor-pointer">About Our Approach</button></li>

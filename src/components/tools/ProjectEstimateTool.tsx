@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   Calculator, Check, ArrowRight, ArrowLeft, Send, Sparkles, 
-  Clock, DollarSign, Users, Layers, MessageSquare, ShieldCheck, CheckCircle2
+  Clock, Users, Layers, MessageSquare, ShieldCheck, CheckCircle2, Rocket
 } from 'lucide-react';
 import { saveNewLead } from '../../utils/leadsStorage';
 
@@ -18,8 +18,8 @@ export const ProjectEstimateTool: React.FC = () => {
     'Custom CMS & Admin Panel',
     'SEO Semantic Architecture'
   ]);
-  // Step 4: Target Budget
-  const [budgetRange, setBudgetRange] = useState('$2,500 - $5,000 (₹1.75L - ₹3.5L)');
+  // Step 4: Engagement Scale
+  const [engagementScale, setEngagementScale] = useState('Growth Stage / Production Platform');
   // Step 5: Timeline
   const [timeline, setTimeline] = useState('3 - 5 Weeks (Standard Velocity)');
   // Step 6: Contact Info
@@ -37,12 +37,12 @@ export const ProjectEstimateTool: React.FC = () => {
   const [errorMsg, setErrorMsg] = useState('');
 
   const servicesList = [
-    { title: 'Website Development', baseCost: 1200, baseWeeks: 3, desc: 'High-speed Next.js or headless marketing site' },
-    { title: 'Web Application / SaaS', baseCost: 3200, baseWeeks: 6, desc: 'Custom portals, cloud databases & auth' },
-    { title: 'Mobile App Development', baseCost: 3500, baseWeeks: 7, desc: 'Cross-platform iOS & Android React Native / Flutter' },
-    { title: 'AI Automation & Agents', baseCost: 1800, baseWeeks: 4, desc: 'AI Chatbots, RAG knowledge bases & WhatsApp bots' },
-    { title: 'E-commerce Storefront', baseCost: 1800, baseWeeks: 4, desc: 'Headless Next.js or custom Shopify Plus' },
-    { title: 'Dedicated Developers', baseCost: 2200, baseWeeks: 2, desc: 'Full-time senior remote software engineers' }
+    { title: 'Website Development', tier: 'Sprint Milestone', baseWeeks: 3, desc: 'High-speed Next.js or headless marketing platform' },
+    { title: 'Web Application / SaaS', tier: 'Multi-Sprint Agile', baseWeeks: 5, desc: 'Custom portals, cloud databases & auth' },
+    { title: 'Mobile App Development', tier: 'Full-Cycle Build', baseWeeks: 6, desc: 'Cross-platform iOS & Android React Native / Flutter' },
+    { title: 'AI Automation & Agents', tier: 'Solution Sprint', baseWeeks: 4, desc: 'Autonomous AI Chatbots, RAG pipelines & WhatsApp bots' },
+    { title: 'E-commerce Storefront', tier: 'Storefront Sprint', baseWeeks: 4, desc: 'Headless Next.js or custom scalable e-commerce' },
+    { title: 'Dedicated Developers', tier: 'Full-Time Resource', baseWeeks: 2, desc: 'Full-time senior remote software engineers' }
   ];
 
   const projectTypes = [
@@ -53,16 +53,16 @@ export const ProjectEstimateTool: React.FC = () => {
   ];
 
   const availableFeatures = [
-    { name: 'Responsive Mobile-First UI', cost: 300, weeks: 0.5 },
-    { name: 'Custom CMS & Admin Panel', cost: 500, weeks: 1 },
-    { name: 'SEO Semantic Architecture & Schema', cost: 350, weeks: 0.5 },
-    { name: 'Payment Gateway (Stripe/Razorpay)', cost: 450, weeks: 0.5 },
-    { name: 'WhatsApp Cloud API Automation', cost: 600, weeks: 1 },
-    { name: 'AI Chatbot with Private RAG Knowledge', cost: 850, weeks: 1.5 },
-    { name: 'User Authentication & RBAC Roles', cost: 400, weeks: 0.5 },
-    { name: 'ERP or CRM Bi-Directional Sync', cost: 750, weeks: 1 },
-    { name: 'Multi-Language / International i18n', cost: 400, weeks: 0.5 },
-    { name: 'Push Notifications (FCM / OneSignal)', cost: 350, weeks: 0.5 }
+    { name: 'Responsive Mobile-First UI', impact: 'Standard', weeks: 0.5 },
+    { name: 'Custom CMS & Admin Panel', impact: 'Core Module', weeks: 1 },
+    { name: 'SEO Semantic Architecture & Schema', impact: 'Optimization', weeks: 0.5 },
+    { name: 'Payment Gateway Integration', impact: 'Financial API', weeks: 0.5 },
+    { name: 'WhatsApp Cloud API Automation', impact: 'Messaging API', weeks: 1 },
+    { name: 'AI Assistant with Private RAG Knowledge', impact: 'Intelligent Agent', weeks: 1.5 },
+    { name: 'User Authentication & RBAC Roles', impact: 'Security Layer', weeks: 0.5 },
+    { name: 'ERP or CRM Bi-Directional Sync', impact: 'Data Pipeline', weeks: 1 },
+    { name: 'Multi-Language / Internationalization', impact: 'Global Ready', weeks: 0.5 },
+    { name: 'Push Notifications & Webhooks', impact: 'Real-time System', weeks: 0.5 }
   ];
 
   const toggleFeature = (featureName: string) => {
@@ -73,34 +73,29 @@ export const ProjectEstimateTool: React.FC = () => {
     }
   };
 
-  // Calculation logic
+  // Calculation logic without currency
   const calculateEstimates = () => {
     const srv = servicesList.find(s => s.title === selectedService) || servicesList[0];
-    let totalFeatureCost = 0;
     let extraWeeks = 0;
 
     selectedFeatures.forEach(featName => {
       const feat = availableFeatures.find(f => f.name === featName);
       if (feat) {
-        totalFeatureCost += feat.cost;
         extraWeeks += feat.weeks;
       }
     });
 
-    const baseMin = srv.baseCost + totalFeatureCost;
-    const baseMax = Math.round(baseMin * 1.35);
-
     const minWeeks = Math.max(2, Math.round(srv.baseWeeks + extraWeeks));
     const maxWeeks = minWeeks + 2;
-
-    const inrMin = (baseMin * 85).toLocaleString('en-IN');
-    const inrMax = (baseMax * 85).toLocaleString('en-IN');
+    const sprintCount = Math.ceil(maxWeeks / 2);
 
     return {
-      usdRange: `$${baseMin.toLocaleString()} - $${baseMax.toLocaleString()} USD`,
-      inrRange: `₹${inrMin} - ₹${inrMax} INR`,
+      sprintCount: `${sprintCount} Sprints`,
       timelineWeeks: `${minWeeks} to ${maxWeeks} Weeks`,
-      recommendedTeam: minWeeks > 5 ? 'Senior Lead Architect + 2 Full-Stack Engineers + QA' : 'Senior Full-Stack Engineer + UI/UX Specialist'
+      recommendedTeam: minWeeks > 5 
+        ? 'Lead Solutions Architect + 2 Full-Stack Engineers + QA Specialist' 
+        : 'Senior Full-Stack Engineer + UI/UX Designer',
+      deliveryModel: 'Sprint-Based Milestone Delivery'
     };
   };
 
@@ -134,10 +129,10 @@ export const ProjectEstimateTool: React.FC = () => {
         country: contactInfo.country,
         service: selectedService,
         projectType,
-        budget: `${estimates.usdRange} (${estimates.inrRange})`,
+        budget: engagementScale,
         timeline: estimates.timelineWeeks,
-        message: `Project Estimate Submission: Selected ${selectedFeatures.length} features (${selectedFeatures.join(', ')}). Target user budget: ${budgetRange}. Additional notes: ${contactInfo.notes}`,
-        source: 'Free Project Estimate Tool',
+        message: `Project Estimate Submission: Selected ${selectedFeatures.length} features (${selectedFeatures.join(', ')}). Scale: ${engagementScale}. Timeline: ${estimates.timelineWeeks}. Team: ${estimates.recommendedTeam}. Notes: ${contactInfo.notes}`,
+        source: 'Scope Estimator Tool',
         utm: {
           utm_source: 'website_tool',
           landing_page: '/free-project-estimate'
@@ -149,7 +144,7 @@ export const ProjectEstimateTool: React.FC = () => {
     } catch (err) {
       console.error(err);
       setIsSubmitting(false);
-      setErrorMsg('Submission failed. Please message us on WhatsApp.');
+      setErrorMsg('Submission failed. Please reach out via WhatsApp.');
     }
   };
 
@@ -158,19 +153,19 @@ export const ProjectEstimateTool: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl border border-slate-200/80 overflow-hidden">
       
-      {/* Top Wizard Indicator */}
+      {/* Top Wizard Header */}
       <div className="bg-slate-900 text-white p-6 sm:p-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-400 mb-1">
               <Calculator className="w-4 h-4" />
-              <span>Interactive Scope & Investment Estimator</span>
+              <span>Interactive Architecture & Scope Estimator</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-white">
-              Instant Project Cost & Timeline Calculator
+              Project Timeline & Resource Roadmap Calculator
             </h2>
             <p className="text-slate-400 text-xs sm:text-sm mt-1">
-              Transparent, itemized pricing models based on modern architectural parameters.
+              Structured sprint timelines, architecture breakdowns, and dedicated engineering team allocations.
             </p>
           </div>
 
@@ -188,24 +183,25 @@ export const ProjectEstimateTool: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Body */}
-      <div className="p-6 sm:p-10">
+      {/* Body Area */}
+      <div className="p-6 sm:p-8">
         
         {isCalculated ? (
-          /* Step 7: Final Result Breakdown */
+          /* RESULT SCREEN - Zero Prices */
           <div className="space-y-8 animate-in fade-in duration-300">
-            <div className="p-6 bg-emerald-50/80 border border-emerald-200 rounded-3xl text-center">
-              <div className="w-14 h-14 rounded-full bg-emerald-600 text-white mx-auto flex items-center justify-center mb-3 shadow-md shadow-emerald-600/30">
-                <CheckCircle2 className="w-7 h-7" />
+            
+            <div className="text-center">
+              <div className="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto mb-3">
+                <Check className="w-6 h-6" />
               </div>
               <span className="text-xs uppercase font-extrabold tracking-widest text-emerald-800">
-                Estimate Calculated & Saved
+                Roadmap Calculated Successfully
               </span>
               <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 font-heading">
-                Estimated Project Scope: {selectedService}
+                Proposed Engineering Roadmap: {selectedService}
               </h3>
               <p className="text-slate-600 text-xs sm:text-sm mt-2 max-w-xl mx-auto">
-                Based on your selected parameters, here is your estimated engineering investment range and delivery timeline. A copy has been logged to our solutions team.
+                Based on your architectural selections, here is your estimated delivery velocity and recommended engineering pod allocation.
               </p>
             </div>
 
@@ -213,17 +209,17 @@ export const ProjectEstimateTool: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="p-5 rounded-2xl bg-blue-50/60 border border-blue-200">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase text-blue-700 mb-1">
-                  <DollarSign className="w-4 h-4" />
-                  <span>Estimated Investment</span>
+                  <Rocket className="w-4 h-4" />
+                  <span>Sprint Iterations</span>
                 </div>
-                <div className="text-xl font-extrabold text-slate-900">{estimates.usdRange}</div>
-                <div className="text-xs font-semibold text-blue-800 mt-1">{estimates.inrRange}</div>
+                <div className="text-xl font-extrabold text-slate-900">{estimates.sprintCount}</div>
+                <div className="text-xs font-semibold text-blue-800 mt-1">Milestone Reviews Included</div>
               </div>
 
               <div className="p-5 rounded-2xl bg-indigo-50/60 border border-indigo-200">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase text-indigo-700 mb-1">
                   <Clock className="w-4 h-4" />
-                  <span>Development Velocity</span>
+                  <span>Estimated Velocity</span>
                 </div>
                 <div className="text-xl font-extrabold text-slate-900">{estimates.timelineWeeks}</div>
                 <div className="text-xs text-slate-500 mt-1">2-week agile sprint cycles</div>
@@ -235,7 +231,7 @@ export const ProjectEstimateTool: React.FC = () => {
                   <span>Recommended Pod</span>
                 </div>
                 <div className="text-sm font-bold text-slate-900">{estimates.recommendedTeam}</div>
-                <div className="text-xs text-slate-500 mt-1">Managed delivery & code reviews</div>
+                <div className="text-xs text-slate-500 mt-1">Full code review & QA included</div>
               </div>
             </div>
 
@@ -257,13 +253,13 @@ export const ProjectEstimateTool: React.FC = () => {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
               <a
-                href={`https://wa.me/919568497688?text=Hello%20HireYourCoder,%20I%20just%20ran%20the%20estimate%20calculator%20for%20${encodeURIComponent(selectedService)}%20(${encodeURIComponent(estimates.usdRange)}).%20My%20name%20is%20${encodeURIComponent(contactInfo.name)}.`}
+                href={`https://wa.me/919568497688?text=Hello%20HireYourCoder,%20I%20just%20ran%20the%20scope%20estimator%20for%20${encodeURIComponent(selectedService)}%20(${encodeURIComponent(estimates.timelineWeeks)}).%20My%20name%20is%20${encodeURIComponent(contactInfo.name)}.`}
                 target="_blank"
                 rel="noreferrer"
                 className="w-full sm:flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-6 rounded-xl text-center text-sm shadow-md shadow-emerald-600/25 flex items-center justify-center gap-2"
               >
                 <MessageSquare className="w-4 h-4" />
-                <span>Discuss on WhatsApp Now</span>
+                <span>Discuss Roadmap on WhatsApp</span>
               </a>
 
               <button
@@ -271,9 +267,9 @@ export const ProjectEstimateTool: React.FC = () => {
                   setIsCalculated(false);
                   setCurrentStep(1);
                 }}
-                className="w-full sm:w-auto px-6 py-3.5 border border-slate-300 hover:bg-slate-50 rounded-xl text-slate-700 font-semibold text-sm transition-colors"
+                className="w-full sm:w-auto px-6 py-3.5 border border-slate-300 hover:bg-slate-50 rounded-xl text-slate-700 font-semibold text-sm transition-colors cursor-pointer"
               >
-                Recalculate Estimate
+                Modify Roadmap Parameters
               </button>
             </div>
           </div>
@@ -282,8 +278,8 @@ export const ProjectEstimateTool: React.FC = () => {
             {/* Step 1: Select Service */}
             {currentStep === 1 && (
               <div className="space-y-4 animate-in fade-in">
-                <h3 className="text-lg font-bold text-slate-900">Step 1: Select Primary Service Needed</h3>
-                <p className="text-slate-500 text-xs">Choose the primary technology domain you require.</p>
+                <h3 className="text-lg font-bold text-slate-900">Step 1: Select Primary Domain Needed</h3>
+                <p className="text-slate-500 text-xs">Choose the primary technology solution you require.</p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                   {servicesList.map(srv => (
                     <div
@@ -305,7 +301,7 @@ export const ProjectEstimateTool: React.FC = () => {
                       </div>
                       <p className="text-xs text-slate-500 mt-1">{srv.desc}</p>
                       <div className="mt-2 text-[11px] font-semibold text-blue-700">
-                        Base starting from ${srv.baseCost}
+                        Framework: {srv.tier}
                       </div>
                     </div>
                   ))}
@@ -363,7 +359,7 @@ export const ProjectEstimateTool: React.FC = () => {
                           </div>
                           <span>{feat.name}</span>
                         </div>
-                        <span className="text-[10px] text-slate-400 font-mono">+${feat.cost}</span>
+                        <span className="text-[10px] text-blue-600 font-medium">{feat.impact}</span>
                       </div>
                     );
                   })}
@@ -371,23 +367,23 @@ export const ProjectEstimateTool: React.FC = () => {
               </div>
             )}
 
-            {/* Step 4: Budget Range */}
+            {/* Step 4: Engagement Scale */}
             {currentStep === 4 && (
               <div className="space-y-4 animate-in fade-in">
-                <h3 className="text-lg font-bold text-slate-900">Step 4: Target Investment Appetite</h3>
-                <p className="text-slate-500 text-xs">Help us tailor architecture choices to your budget allocation.</p>
+                <h3 className="text-lg font-bold text-slate-900">Step 4: Target Engagement Scale</h3>
+                <p className="text-slate-500 text-xs">Select your product maturity stage and operational requirements.</p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                   {[
-                    { label: '$1,000 - $2,500 (₹75,000 - ₹1,80,000)', desc: 'Lean MVP or High-Performance Marketing Site' },
-                    { label: '$2,500 - $5,000 (₹1,75,000 - ₹3,50,000)', desc: 'Full-Featured Web App / Custom Storefront' },
-                    { label: '$5,000 - $10,000 (₹3,50,000 - ₹7,50,000)', desc: 'Multi-Tenant SaaS / Mobile App Suite' },
-                    { label: '$10,000+ (₹7,50,000+ Enterprise)', desc: 'Complete Enterprise Ecosystem / Dedicated Pod' }
+                    { label: 'Startup Prototype / Lean MVP', desc: 'Fast-track launch with high-performance responsive web' },
+                    { label: 'Growth Stage / Production Platform', desc: 'Full-featured web application or custom storefront' },
+                    { label: 'Enterprise Multi-Tier Architecture', desc: 'High-concurrency platform with microservices & deep integrations' },
+                    { label: 'Dedicated Engineering Pod', desc: 'Full-time remote senior developers embedded in your team' }
                   ].map(b => (
                     <div
                       key={b.label}
-                      onClick={() => setBudgetRange(b.label)}
+                      onClick={() => setEngagementScale(b.label)}
                       className={`p-4 rounded-2xl border cursor-pointer transition-all ${
-                        budgetRange === b.label
+                        engagementScale === b.label
                           ? 'border-blue-600 bg-blue-50/50 shadow-sm'
                           : 'border-slate-200 hover:bg-slate-50'
                       }`}
@@ -436,8 +432,8 @@ export const ProjectEstimateTool: React.FC = () => {
             {currentStep === 6 && (
               <form onSubmit={handleFinalSubmit} className="space-y-4 animate-in fade-in">
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900">Step 6: Where Should We Send the Full Spec & Cost Breakdown?</h3>
-                  <p className="text-slate-500 text-xs">We will immediately show your calculated range on screen and log your request.</p>
+                  <h3 className="text-lg font-bold text-slate-900">Step 6: Where Should We Send Your Detailed Spec Roadmap?</h3>
+                  <p className="text-slate-500 text-xs">We will immediately display your calculated roadmap on screen and log your request.</p>
                 </div>
 
                 {errorMsg && (
@@ -452,7 +448,7 @@ export const ProjectEstimateTool: React.FC = () => {
                     <input
                       type="text"
                       required
-                      placeholder="e.g. Kaif Khan"
+                      placeholder="e.g. Rahul Sharma"
                       value={contactInfo.name}
                       onChange={(e) => setContactInfo({ ...contactInfo, name: e.target.value })}
                       className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -464,7 +460,7 @@ export const ProjectEstimateTool: React.FC = () => {
                     <input
                       type="email"
                       required
-                      placeholder="kaif@company.com"
+                      placeholder="rahul@company.com"
                       value={contactInfo.email}
                       onChange={(e) => setContactInfo({ ...contactInfo, email: e.target.value })}
                       className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -512,14 +508,14 @@ export const ProjectEstimateTool: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl text-sm transition-colors shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl text-sm transition-colors shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2 cursor-pointer"
                   >
                     {isSubmitting ? (
                       <span>Calculating Spec...</span>
                     ) : (
                       <>
                         <Sparkles className="w-4 h-4" />
-                        <span>Calculate Estimate & View Breakdown</span>
+                        <span>Calculate Roadmap & View Breakdown</span>
                       </>
                     )}
                   </button>
@@ -534,7 +530,7 @@ export const ProjectEstimateTool: React.FC = () => {
                   type="button"
                   onClick={() => setCurrentStep(Math.max(1, currentStep - 1))}
                   disabled={currentStep === 1}
-                  className="px-4 py-2 text-xs font-bold text-slate-500 hover:text-slate-900 disabled:opacity-30 disabled:hover:text-slate-500 flex items-center gap-1"
+                  className="px-4 py-2 text-xs font-bold text-slate-500 hover:text-slate-900 disabled:opacity-30 disabled:hover:text-slate-500 flex items-center gap-1 cursor-pointer"
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
                   <span>Previous</span>
@@ -543,7 +539,7 @@ export const ProjectEstimateTool: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setCurrentStep(Math.min(6, currentStep + 1))}
-                  className="px-5 py-2.5 bg-slate-900 hover:bg-blue-600 text-white text-xs font-bold rounded-xl flex items-center gap-2 transition-colors shadow-sm"
+                  className="px-5 py-2.5 bg-slate-900 hover:bg-blue-600 text-white text-xs font-bold rounded-xl flex items-center gap-2 transition-colors shadow-sm cursor-pointer"
                 >
                   <span>Next Step</span>
                   <ArrowRight className="w-3.5 h-3.5" />

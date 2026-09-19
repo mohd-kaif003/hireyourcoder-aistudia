@@ -240,7 +240,7 @@ export const locationsData: LocationItem[] = [
     flag: '🇺🇸',
     tagline: 'High-Velocity Product Engineering, AI Automation & Elite Dedicated Developers for US Ambitious Companies',
     localBusinessChallenges: [
-      'US tech companies face exorbitant domestic developer costs ($140k–$220k+ / year per engineer) and fierce domestic talent poaching.',
+      'US tech companies face exorbitant domestic engineering payroll costs and fierce local talent poaching.',
       'Traditional offshore outsourcing shops deliver poor code quality, brittle communication, and mismatched timezone overlap.',
       'Startups and agencies need experienced, English-fluent engineers who understand modern product velocity and Figma-to-code fidelity.'
     ],
@@ -354,7 +354,7 @@ export const locationsData: LocationItem[] = [
     flag: '🇦🇺',
     tagline: 'Enterprise Web Development, E-commerce & Scalable Tech for Australian Businesses',
     localBusinessChallenges: [
-      'Australian enterprises in Sydney, Melbourne, and Brisbane experience steep domestic developer rates ($120–$180 AUD/hr).',
+      'Australian enterprises in Sydney, Melbourne, and Brisbane experience steep domestic developer shortages and long hiring cycles.',
       'Need an engineering partner who can conduct daily morning standups aligned with Australian Eastern Standard Time (AEST).'
     ],
     servicesOffered: [
