@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Layers, Database, Cloud, Smartphone, Cpu, TrendingUp, Code2 } from 'lucide-react';
 
 export const TechStackSection: React.FC = () => {
@@ -11,7 +12,7 @@ export const TechStackSection: React.FC = () => {
     { id: 'databases', label: 'Databases', icon: Database },
     { id: 'cloud', label: 'Cloud & DevOps', icon: Cloud },
     { id: 'ai', label: 'AI & Automation', icon: Cpu },
-    { id: 'marketing', label: 'Tracking & MarTech', icon: TrendingUp }
+    { id: 'marketing', label: 'Analytics & MarTech', icon: TrendingUp }
   ];
 
   const technologies = {
@@ -24,7 +25,7 @@ export const TechStackSection: React.FC = () => {
     ],
     backend: [
       { name: 'Node.js & Express', desc: 'High-throughput asynchronous event-driven microservices.' },
-      { name: 'Python & FastAPI', desc: 'High-performance REST & GraphQL APIs with automated OpenAPI documentation.' },
+      { name: 'Python & FastAPI', desc: 'High-performance REST & GraphQL APIs with automated OpenAPI docs.' },
       { name: 'Django', desc: 'Enterprise-grade Python framework for data-intensive business logic.' },
       { name: 'Laravel (PHP 8.3+)', desc: 'Elegant MVC architecture for custom business dashboards and ERPs.' }
     ],
@@ -63,62 +64,78 @@ export const TechStackSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20 lg:py-28 bg-white border-t border-slate-200/60">
+    <section className="py-14 sm:py-20 lg:py-24 bg-white border-t border-slate-200/70">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-bold uppercase tracking-wider mb-3">
+        <motion.div 
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.45 }}
+          className="text-center max-w-3xl mx-auto mb-8 sm:mb-12"
+        >
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-[11px] sm:text-xs font-semibold uppercase tracking-wider mb-2.5">
             <span>Modern Engineering Toolchain</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-950 font-heading tracking-tight">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-950 font-heading tracking-tight">
             Battle-Tested Technologies for Global Scale
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
-            We avoid trendy gimmicks and brittle page builders. Every layer in our tech stack is selected for developer ergonomics, speed, and enterprise reliability.
+          <p className="mt-3 text-xs sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
+            We avoid fragile fads and choose reliable, high-performance tools that give your product lasting stability, zero vendor lock-in, and rapid feature iteration.
           </p>
+        </motion.div>
 
-          {/* Categories Filter Tabs */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mt-8">
-            {categories.map(cat => {
-              const Icon = cat.icon;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveTab(cat.id as any)}
-                  className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
-                    activeTab === cat.id
-                      ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
-                      : 'bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200'
-                  }`}
-                >
-                  <Icon className="w-3.5 h-3.5" />
-                  <span>{cat.label}</span>
-                </button>
-              );
-            })}
-          </div>
+        {/* Category Filter Tabs - Horizontally scrollable on mobile */}
+        <div className="flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-12 overflow-x-auto no-scrollbar pb-1 px-1">
+          {categories.map((cat) => {
+            const Icon = cat.icon;
+            const isActive = activeTab === cat.id;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setActiveTab(cat.id as any)}
+                className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer ${
+                  isActive
+                    ? 'bg-slate-900 text-white shadow-xs'
+                    : 'bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-200/80'
+                }`}
+              >
+                <Icon className="w-3.5 h-3.5" />
+                <span>{cat.label}</span>
+              </button>
+            );
+          })}
         </div>
 
-        {/* Tech Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-in fade-in duration-200">
-          {technologies[activeTab].map((tech, idx) => (
-            <div
-              key={idx}
-              className="p-6 rounded-3xl bg-slate-50 border border-slate-200/80 hover:bg-white hover:shadow-md hover:border-blue-200 transition-all duration-200 group"
-            >
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors font-heading">
-                  {tech.name}
-                </h3>
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+        {/* Technology Cards Grid */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-6xl mx-auto"
+          >
+            {technologies[activeTab].map((tech, idx) => (
+              <div
+                key={idx}
+                className="p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-slate-50/80 border border-slate-200/80 hover:border-blue-300 hover:bg-white transition-all duration-150 shadow-2xs group"
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="font-bold text-xs sm:text-sm text-slate-900 group-hover:text-blue-600 transition-colors">
+                    {tech.name}
+                  </h4>
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                </div>
+                <p className="text-slate-600 text-xs leading-relaxed">
+                  {tech.desc}
+                </p>
               </div>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                {tech.desc}
-              </p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
 
       </div>
     </section>
